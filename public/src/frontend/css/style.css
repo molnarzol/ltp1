@@ -1,0 +1,90 @@
+body {
+    padding-top: 5rem;
+}
+.starter-template {
+    padding: 3rem 1.5rem;
+    text-align: center;
+}
+
+/* LOGIN */
+.login-menu, .profil-menu {
+    position: relative;
+    float: right;
+}
+
+.user-links {
+    margin: 0;
+}
+
+.user-links li {
+    float: left;
+    margin-left: 1rem;
+    list-style: none;
+}
+
+.user-links li a {
+    display: block;
+    padding-top: .425rem;
+    padding-bottom: .425rem;
+    color: #dddddd;
+}
+
+.ul-icon {
+    margin-right: 5px;
+}
+
+.login {
+    cursor: pointer;
+}
+
+.login-box {
+    position: absolute;
+    right: 0;
+    top: 46px;
+    width: 300px;
+    height: 150px;
+    background-color: #373a3c;
+    padding: 10px;
+    display: none;
+}
+
+.login-input {
+    width: 100%;
+    margin-bottom: 10px;
+    color: #373a3c;
+    padding: 5px;
+}
+
+.login-buttons:after {
+    clear: both;
+    display: block;
+    content: ' ';
+}
+
+.login-submit {
+    float: right;
+    color: #373a3c;
+}
+
+.forgot-psw {
+    float: left;
+}
+
+.forgot-psw a {
+    line-height: 30px;
+    color: #dddddd;
+}
+/* LOGIN */
+
+.panel-heading {
+    margin-bottom: 20px;
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: bold;
+}
+
+.form-group:after {
+    clear: both;
+    display: block;
+    content: ' ';
+}

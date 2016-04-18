@@ -7,6 +7,7 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -63,10 +64,21 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        $data['verification_code']  = $user->verification_code;
+
+        Mail::send('emails.welcome', $data, function($message) use ($data)
+        {
+            $message->subject("Welcome to ltp1");
+            $message->to($data['email']);
+        });
+
+
+        return $user;
     }
 }
