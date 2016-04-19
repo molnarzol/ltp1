@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -29,7 +30,9 @@ class HomeController extends Controller
 
     public function myProfil()
     {
-        return view('frontend.my_profil');
+        $user = Auth::user();
+
+        return view('frontend.my_profil', ['user' => $user]);
     }
 
 }

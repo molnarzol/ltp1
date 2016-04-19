@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\UsersUser;
+use App\UsersAdmin;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Support\Facades\Mail;
+
 
 class AuthController extends Controller
 {
@@ -49,11 +52,19 @@ class AuthController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
+        if ( isset($data['userable']) && $data['userable'] === 'admin' )
+        {
+            // admin user
+        }
+        else
+        {
+            return Validator::make($data, [
+                'first_name' => 'required|max:255',
+                'last_name' => 'required|max:255',
+                'email' => 'required|email|max:255|unique:users',
+                'password' => 'required|min:6|confirmed',
+            ]);
+        }
     }
 
     /**
@@ -64,20 +75,35 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
-
-        $data['verification_code']  = $user->verification_code;
-
-        Mail::send('emails.welcome', $data, function($message) use ($data)
+        if ( isset($data['userable']) && $data['userable'] === 'admin' )
         {
-            $message->subject("Welcome to ltp1");
-            $message->to($data['email']);
-        });
+            // admin user
+        }
+        else
+        {
+            // simple user
+            $user = User::create([
+                'role' => 'user',
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+            ]);
 
+            $user_user = UsersUser::create([
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name']
+            ]);
+
+            $user_user->user()->save($user);
+
+            $data['verification_code']  = $user->verification_code;
+            $data['name']  = $data['first_name'] . ' ' .$data['last_name'];
+
+            Mail::send('emails.welcome', $data, function($message) use ($data)
+            {
+                $message->subject("Welcome to ltp1");
+                $message->to($data['email']);
+            });
+        }
 
         return $user;
     }

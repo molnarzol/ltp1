@@ -89,6 +89,6 @@ body {
     content: ' ';
 }
 
-.form-group.has-error .form-control {
+.form-control.has-error {
     border-color: #af1822;
 }
