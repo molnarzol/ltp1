@@ -20,6 +20,5 @@
 @section('scripts')
     <script type="text/javascript">
         var token = "{{ Session::token() }}";
-        Register.init();
     </script>
 @endsection

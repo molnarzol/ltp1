@@ -1,13 +1,7 @@
 $( document ).ready(function() {
     Register.init();
-
-    // var loginForm = $("#login-form");
-    // loginForm.submit(function(e){
-    //     e.preventDefault();
-    //     var formData = loginForm.serialize();
-    //
-    // });
 });
+
 Register = {
     init: function(){
         console.log( "ready!" );
@@ -30,6 +24,23 @@ Register = {
             }
         };
         this.initValidation('#login_form', rules);
+
+        var rules = {
+            rules: {
+                first_name: {required: true, maxlength: 255},
+                last_name: {required: true, maxlength: 255},
+                email: {required: true, email: true}
+            }
+        };
+        this.initValidation('#edit_profil_form', rules);
+
+        var rules = {
+            rules: {
+                password: {required: true},
+                password_again: {equalTo: "#password"}
+            }
+        };
+        this.initValidation('#change_password_form', rules);
     },
     bindEvents: function(){
         $( "#show-login" ).click(function() {

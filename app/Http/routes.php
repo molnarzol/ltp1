@@ -20,4 +20,7 @@ Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/my-profil', 'HomeController@myProfil');
+
+    Route::post('/my-profil/edit', 'HomeController@editMyProfil');
+    Route::post('/my-profil/change-password', 'HomeController@changePassword');
 });

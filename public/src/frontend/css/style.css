@@ -6,6 +6,25 @@ body {
     text-align: center;
 }
 
+/* INFO BOX */
+.info-box {
+    text-align: center;
+    margin: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.info-box.success {
+    border: 1px solid green;
+    color: green;
+}
+
+.info-box.fail {
+    border: 1px solid red;
+    color: red;
+}
+/* INFO BOX END*/
+
 /* LOGIN */
 .login-menu, .profil-menu {
     position: relative;

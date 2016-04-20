@@ -12,12 +12,13 @@
     <div class="starter-template">
         <h1>Welcome {{ $user->userable->first_name }}</h1>
     </div>
+    @include('includes.info-box')
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Profil modification</div>
                 <div class="panel-body">
-                    <form id="register_form" class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+                    <form id="edit_profil_form" class="form-horizontal" role="form" method="POST" action="{{ url('/my-profil/edit') }}">
                         {!! csrf_field() !!}
 
                         <div class="form-group">
@@ -79,7 +80,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Password modification</div>
                 <div class="panel-body">
-                    <form id="register_form" class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+                    <form id="change_password_form" class="form-horizontal" role="form" method="POST" action="{{ url('/my-profil/change-password') }}">
                         {!! csrf_field() !!}
                         <div class="form-group">
                             <label class="col-md-4 control-label">Password</label>
